@@ -7,17 +7,17 @@ import Layout from "../../../layouts/Layout.astro";
 export const prerender = true;
 
 export function getStaticPaths() {
-  const species = [...new Set(penguins.map((penguin) => penguin.species))];
+  const islands = [...new Set(penguins.map((penguin) => penguin.island))];
 
-  return species.map((name) => ({
-    params: { species: name },
+  return islands.map((name) => ({
+    params: { island: name },
   }));
 }
 
-const { species: speciesName } = Astro.params;
+const { island: islandName } = Astro.params;
 const filteredPenguins = penguins.filter(
   (penguin) =>
-    penguin.species === speciesName &&
+    penguin.island === islandName &&
     penguin.body_mass_g !== null &&
     penguin.flipper_length_mm !== null,
 );
@@ -42,16 +42,16 @@ const plotOptions = {
   color: {
     legend: true,
   },
-  title: `Masse et nageoires - ${speciesName}`,
+  title: `Masse et nageoires - ${islandName}`,
 };
 ---
-<Layout title={`${speciesName} | Manchots | Data studio`}>
+<Layout title={`${islandName} | Manchots | Data studio`}>
   <section>
     <div class="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
       <div>
-        <a href="/penguins/species" class="text-sm font-medium text-amber-300 transition hover:text-white">&lt;- Toutes les espèces</a>
-        <p class="mt-8 text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">Analyse des manchots</p>
-        <h1 class="mt-3 text-4xl font-semibold tracking-tight text-white sm:text-5xl">{speciesName}</h1>
+        <a href="/penguins/islands" class="text-sm font-medium text-cyan-300 transition hover:text-white">&lt;- Toutes les îles</a>
+        <p class="mt-8 text-sm font-semibold uppercase tracking-[0.2em] text-amber-300">Analyse des manchots</p>
+        <h1 class="mt-3 text-4xl font-semibold tracking-tight text-white sm:text-5xl">{islandName}</h1>
       </div>
       <p class="rounded-lg border border-white/10 bg-slate-900 px-4 py-3 text-sm text-slate-300">{filteredPenguins.length} individu(s)</p>
     </div>
