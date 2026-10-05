@@ -21,15 +21,15 @@ const { title = "Explorateur de données" } = Astro.props;
         <div class="flex items-center gap-6 text-sm text-slate-300">
           <a href="/" class="transition hover:text-cyan-300">Accueil</a>
           <a href="/cars" class="transition hover:text-cyan-300">Voitures</a>
+          <a href="/penguins" class="transition hover:text-cyan-300">Manchots</a>
         </div>
       </nav>
     </header>
     <main class="mx-auto w-full max-w-6xl px-6 py-12 sm:py-16">
       <slot />
     </main>
-    <footer class="border-t border-white/10 px-6 py-6 text-center text-xs text-slate-500">
-      Visualisation de données automobiles
-    </footer>
+    <footer class="border-t border-white/10 px-6 py-6 text-center text-xs text-slate-500"/>
+
   </body>
 </html>
 

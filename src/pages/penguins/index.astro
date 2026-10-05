@@ -1,0 +1,26 @@
+---
+import penguins from "../../assets/penguins.json";
+import Layout from "../../layouts/Layout.astro";
+const species = [...new Set(penguins.map((penguin) => penguin.species))].sort();
+---
+<Layout title="Manchots | Data studio">
+  <section>
+    <div class="mb-10 max-w-2xl">
+      <p class="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-amber-300">Jeu de données animalier</p>
+      <h1 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl">Manchots par espèce</h1>
+      <p class="mt-4 text-lg leading-8 text-slate-400">Choisis une espèce pour comparer la masse corporelle et la longueur des nageoires.</p>
+    </div>
+    <ul class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        species.map((name) => (
+          <li>
+            <a href={`/penguins/species/${name}`} class="group flex items-center justify-between rounded-lg border border-white/10 bg-slate-900 px-5 py-4 transition hover:-translate-y-0.5 hover:border-amber-300/60 hover:bg-slate-800">
+              <span class="text-base font-medium text-slate-200">{name}</span>
+              <span aria-hidden="true" class="text-amber-300 transition group-hover:translate-x-1">-&gt;</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Layout>
