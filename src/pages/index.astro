@@ -5,17 +5,34 @@ import * as Plot from "@observablehq/plot";
 import penguins from "../assets/penguins.json";
 ---
 
-<Layout>
-  <h1 class="text-2xl">Test Astro et Plot (Observablehq)</h1>
-  <PlotFigure
-    options={{
-      marks: [
-        Plot.dot(penguins, {
-          x: "culmen_length_mm",
-          y: "culmen_depth_mm",
-          stroke: "species",
-        }),
-      ],
-    }}
-  />
+<Layout title="Accueil | Data studio">
+  <section class="grid items-end gap-10 lg:grid-cols-[1fr_1.15fr]">
+    <div class="max-w-xl">
+      <p class="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-amber-300">Exploration visuelle</p>
+      <h1 class="text-4xl font-semibold tracking-tight text-white sm:text-6xl">Lire les données autrement.</h1>
+      <p class="mt-6 max-w-lg text-lg leading-8 text-slate-400">
+        Un espace simple pour observer des relations, comparer des variables et trouver les tendances qui se cachent dans les données.
+      </p>
+      <a href="/cars" class="mt-8 inline-flex items-center rounded-lg bg-cyan-300 px-5 py-3 text-sm font-bold text-slate-950 transition hover:bg-white">
+        Explorer les voitures <span aria-hidden="true" class="ml-2">-&gt;</span>
+      </a>
+    </div>
+    <div class="overflow-x-auto rounded-xl border border-white/10 bg-white p-4 shadow-2xl shadow-cyan-950/20 sm:p-6">
+      <PlotFigure
+        options={{
+          marks: [
+            Plot.dot(penguins, {
+              x: "culmen_length_mm",
+              y: "culmen_depth_mm",
+              stroke: "species",
+            }),
+          ],
+          grid: true,
+          marginLeft: 56,
+          marginBottom: 45,
+          style: "font-family: sans-serif; font-size: 12px;",
+        }}
+      />
+    </div>
+  </section>
 </Layout>
